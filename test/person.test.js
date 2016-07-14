@@ -22,7 +22,7 @@ describe('Person', () => {
       },
       /Not enough info/
     )
-    
+
     should.throws(
       () => {
         new Person({ // eslint-disable-line

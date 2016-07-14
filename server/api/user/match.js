@@ -16,7 +16,7 @@ const checkAgeMatchByUsername = suitableAges => usernameLocal => Promise
 const router = koaRouter()
 router.get('/:username', function* handler() {
   const { username } = this.params
-  const { user, preferences, likes, rejects } = yield Person.get(username)
+  const { preferences, likes, rejects } = yield Person.get(username)
   const ageRangeWidth = preferences.ageRangeMax - preferences.ageRangeMin + 1
   const suitableAges = times(ageRangeWidth, i => i + preferences.ageRangeMin)
 
