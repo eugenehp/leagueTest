@@ -10,23 +10,32 @@ export default class Person {
       client.hgetallAsync(`preferences:${username}`),
       client.smembersAsync(`likes:${username}`),
       client.smembersAsync(`rejects:${username}`),
-    ]).then(([user, preferences, likes, rejects]) => ({
-      user: Object.assign(user, { age: parseInt(user.age, 10) }),
-      preferences: Object.assign(preferences, {
-        ageRangeMax: parseInt(preferences.ageRangeMax, 10),
-        ageRangeMin: parseInt(preferences.ageRangeMin, 10),
-      }),
-      likes,
-      rejects,
-    }))
+    ])
+      .then(([user, preferences, likes, rejects]) => {
+        if (!user) {
+          throw new Error('User not found')
+        }
+        return {
+          user: Object.assign({}, user, { age: parseInt(user.age, 10) }),
+          preferences: Object.assign({}, preferences, {
+            ageRangeMax: parseInt(preferences.ageRangeMax, 10),
+            ageRangeMin: parseInt(preferences.ageRangeMin, 10),
+          }),
+          likes,
+          rejects,
+        }
+      })
   }
 
   constructor(person) {
     assert(person, 'Not enough info')
 
     const newPerson = cloneDeep(person)
-    const { preferences, username } = person
+    const { preferences, username, gender, age, religion } = person
     assert(username, 'No username given')
+    assert(gender, 'No gender given')
+    assert(age, 'No age given')
+    assert(religion, 'No religion given')
     assert(preferences, 'No preferences given')
     assert(preferences.gender, 'No gender preference given')
 
@@ -52,5 +61,6 @@ export default class Person {
       client.hmsetAsync(`users:${username}`, omit(user, 'preferences')),
       client.hmsetAsync(`preferences:${username}`, preferences),
     ])
+      .then(() => 'OK')
   }
 }

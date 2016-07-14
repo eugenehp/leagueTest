@@ -4,7 +4,13 @@ import Person from '../server/models/person'
 
 describe('Person', () => {
   it('creates an object', () => {
-    const normalPerson = { username: 'user', preferences: { gender: 'female' } }
+    const normalPerson = {
+      username: 'user',
+      gender: 'male',
+      age: '40',
+      religion: 'muslim',
+      preferences: { gender: 'female' },
+    }
     const newPerson = new Person(normalPerson)
     newPerson.should.be.an.Object()
     newPerson.save.should.be.a.Function()
@@ -16,17 +22,16 @@ describe('Person', () => {
       },
       /Not enough info/
     )
-
+    
     should.throws(
       () => {
-        new Person({ username: 'user' }) // eslint-disable-line
-      },
-      /No preferences given/
-    )
-
-    should.throws(
-      () => {
-        new Person({ username: 'user', preferences: {} }) // eslint-disable-line
+        new Person({ // eslint-disable-line
+          username: 'user',
+          gender: 'male',
+          age: '40',
+          religion: 'muslim',
+          preferences: {},
+        })
       },
       /No gender preference given/
     )
