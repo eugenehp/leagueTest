@@ -14,7 +14,7 @@ export default class Person {
       user: Object.assign(user, { age: parseInt(user.age, 10) }),
       preferences: Object.assign(preferences, {
         ageRangeMax: parseInt(preferences.ageRangeMax, 10),
-        ageRangeMin: parseInt(preferences.ageRangeMin, 10)
+        ageRangeMin: parseInt(preferences.ageRangeMin, 10),
       }),
       likes,
       rejects,
