@@ -7,7 +7,8 @@ export default function *(next) {
     if (err.code) {
       this.body = { error: { message: err.message, code: err.code } }
     } else {
-      this.body = { error: { message: 'Server error' } }
+      // TODO add error codes across app
+      this.body = { error: { message: err.message } }
     }
 
     this.app.emit('error', err, this)

@@ -4,27 +4,29 @@ import Person from '../server/models/person'
 
 describe('Person', () => {
   it('creates an object', () => {
-    const normalPerson = { preferences: { gender: 'female' } }
-    Person(normalPerson).should.be.an.Object()
+    const normalPerson = { username: 'user', preferences: { gender: 'female' } }
+    const newPerson = new Person(normalPerson)
+    newPerson.should.be.an.Object()
+    newPerson.save.should.be.a.Function()
   })
   it('throws on invalid input', () => {
     should.throws(
       () => {
-        Person()
+        new Person() // eslint-disable-line
       },
       /Not enough info/
     )
 
     should.throws(
       () => {
-        Person({})
+        new Person({ username: 'user' }) // eslint-disable-line
       },
-      /Not preference given/
+      /No preferences given/
     )
 
     should.throws(
       () => {
-        Person({ preferences: {} })
+        new Person({ username: 'user', preferences: {} }) // eslint-disable-line
       },
       /No gender preference given/
     )

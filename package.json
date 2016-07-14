@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npm prune",
+    "fixtures": "babel-node ./fixtures | bunyan -l trace",
     "start": "pm2 stop leagueTest; cross-env NODE_ENV=production pm2 start . --name leagueTest",
     "dev": "cross-env NODE_ENV=development nodemon . | bunyan -l trace",
     "lint": "eslint . --ext .js",
@@ -14,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel": "6.5.2",
+    "babel-cli": "6.10.1",
     "babel-core": "6.10.4",
     "babel-eslint": "6.1.2",
     "babel-polyfill": "6.9.1",

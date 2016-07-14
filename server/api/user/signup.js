@@ -1,10 +1,9 @@
-import client from '../../services/redis'
 import koaRouter from 'koa-router'
+import Person from '../../models/person'
+
 const router = koaRouter()
 router.put('/', function* handler() {
-  console.log(1)
-  this.body = 11
-  // this.body = this.passport.user.toAPI()
+  this.status = yield new Person(this.request.body).save()
 })
 
 export default router.routes()
