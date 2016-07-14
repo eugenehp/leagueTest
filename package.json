@@ -4,8 +4,36 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preinstall": "npm prune",
+    "start": "pm2 stop leagueTest; cross-env NODE_ENV=production pm2 start . --name leagueTest",
+    "dev": "cross-env NODE_ENV=development nodemon . | bunyan -l trace",
+    "lint": "eslint . --ext .js",
+    "test": "npm run lint"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "babel": "6.5.2",
+    "babel-eslint": "6.1.2",
+    "babel-preset-es2015": "6.9.0",
+    "babel-preset-stage-0": "6.5.0",
+    "babel-register": "6.9.0",
+    "bunyan": "1.8.1",
+    "config": "1.21.0",
+    "cross-env": "2.0.0",
+    "eslint": "3.0.1",
+    "eslint-config-airbnb": "9.0.1",
+    "eslint-plugin-babel": "3.3.0",
+    "eslint-plugin-import": "1.10.2",
+    "eslint-plugin-jsx-a11y": "2.0.1",
+    "eslint-plugin-react": "5.2.2",
+    "faker": "3.1.0",
+    "koa": "1.2.0",
+    "koa-bodyparser": "2.2.0",
+    "koa-mount": "1.3.0",
+    "koa-router": "5.4.0",
+    "nodemon": "1.9.2",
+    "pm2": "1.1.3",
+    "rimraf": "2.5.3"
+  }
 }
