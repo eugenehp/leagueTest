@@ -4,7 +4,7 @@ import assert from 'assert'
 
 
 const router = koaRouter()
-router.put('/:username/:rejectedusername', function* handler() {
+router.post('/:username/:rejectedusername', function* handler() {
   const { username, rejectedusername } = this.params
   assert(username, 'No username given')
   assert(rejectedusername, 'No rejectedusername given')

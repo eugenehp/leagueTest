@@ -46,13 +46,7 @@ router.get('/:username', function* handler() {
     )
     .slice(0, 5)
 
-  this.body = Object.assign({}, {
-    preferences,
-    user,
-    likes,
-    rejects,
-    match,
-  })
+  this.body = match
 })
 
 export default router.routes()

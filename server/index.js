@@ -26,7 +26,7 @@ async function main() {
   await redisPromise
   app.listen(port, () => {
     const host = 'localhost'
-    fatal('Server listening at http://%s:%s %s', host, port)
+    fatal('Server listening at http://%s:%s', host, port)
   })
 }
 
