@@ -6,6 +6,7 @@
     "babel"
   ],
   "rules": {
+    "new-cap": 0,
     "semi": [
       2,
       "never"
