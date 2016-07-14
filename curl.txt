@@ -1,0 +1,36 @@
+User signup:
+curl -X PUT -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
+    "username":"test2",
+    "gender": "male",
+    "age": "40",
+    "religion": "muslim",
+    "preferences":{
+        "gender":"female"
+    }
+}' "http://planck.io:3002/api/user/signup"
+
+
+User get:
+curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "http://planck.io:3002/api/user/get/test2"
+
+Like:
+curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
+    "username":"test",
+    "password":"test",
+    "preferences":{
+        "gender":"female"
+    }
+}' "http://planck.io:3002/api/user/like/test2/test"
+
+
+Reject:
+curl -X POST -H "Content-Type: application/json" -H "Cache-Control: no-cache" -d '{
+    "username":"test",
+    "password":"test",
+    "preferences":{
+        "gender":"female"
+    }
+}' "http://planck.io:3002/api/user/reject/test2/test"
+
+Get match:
+curl -X GET -H "Content-Type: application/json" -H "Cache-Control: no-cache" "http://planck.io:3002/api/user/match/test2"
