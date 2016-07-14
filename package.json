@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npm prune",
+    "logs": "pm2 logs leagueTest  --raw | bunyan --strict -l trace",
     "fixtures": "babel-node ./fixtures | bunyan -l trace",
     "start": "pm2 stop leagueTest; cross-env NODE_ENV=production pm2 start . --name leagueTest",
     "dev": "cross-env NODE_ENV=development nodemon . | bunyan -l trace",
